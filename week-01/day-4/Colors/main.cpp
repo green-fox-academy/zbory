@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 
-int main(int argc, char* args[]) {
+int main(int argc, char *args[]) {
 
     // - Create a two dimensional array
     //   which can contain the different shades of specified colors
@@ -13,9 +13,9 @@ int main(int argc, char* args[]) {
     //   `"orchid", "violet", "pink", "hot pink"`
 
 
-    std::string colors[3][4] = {{"forest green", "olive", "pale green", "spring green"},
-                            {"orange red", "red", "tomato"},
-                            {"orchid", "violet", "pink", "hot pink" }};
+    std::string colors[3][5] = {{"lime",       "forest green", "olive", "pale green", "spring green"},
+                                {"orange red", "red",          "tomato"},
+                                {"orchid",     "violet",       "pink",  "hot pink"}};
 
 
     return 0;
