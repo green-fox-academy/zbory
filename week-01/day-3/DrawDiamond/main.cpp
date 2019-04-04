@@ -20,10 +20,14 @@ int main(int argc, char *args[]) {
     int spaces;
     std::cout << "Please input a number:";
     std::cin >> num;
-    spaces = num / 2 -1;
 
 
-    for (int i = 0; i < num / 2; i++) {
+    //Need to handle spaces differently in odd and even cases
+    //The whole image also needs to be shifted 1 space from the left side
+    spaces = (num % 2) ? num / 2 + 1 : num / 2;
+    int top_levels = num / 2;
+
+    for (int i = 0; i < top_levels; i++) {
         for (int j = 0; j < spaces; j++) {
             std::cout << " ";
         }
@@ -34,15 +38,16 @@ int main(int argc, char *args[]) {
         std::cout << std::endl;
     }
 
-    spaces = 0;
-    for (int i = 0; i < num / 2; i++) {
-        for (int j = 0; j < spaces; j++) {
+    //Need to handle halving level in odd even cases differently
+    //Odd: half + 1 bottom levels, Even: half bottom levels
+    int bottom_levels = (num % 2) ? num / 2 + 1 : num / 2;
+    for (int i = 0; i < bottom_levels; i++) {
+        for (int j = 0; j < i + 1; j++) {
             std::cout << " ";
         }
-        for (int j = i * 2 + 1; j > 0; j--) {
+        for (int j = 0; j < (bottom_levels - i) * 2 - 1; j++) {
             std::cout << "*";
         }
-        spaces++;
         std::cout << std::endl;
     }
 
