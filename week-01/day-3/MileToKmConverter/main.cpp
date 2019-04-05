@@ -8,7 +8,7 @@ int main(int argc, char* args[]) {
 
     std::cout << "Please input the distance in kilometers: " << std::endl;
     std::cin >> kilometer;
-    std::cout << "The distance in miles is " << kilometer * 1.61 << "." << std::endl;
+    std::cout << "The distance in miles is " << kilometer / 1.61 << "." << std::endl;
 
     return 0;
 }
