@@ -39,7 +39,7 @@ int main(int argc, char *args[]) {
 
     if (credits >= 50 && !isBonus)
         c -= 2;
-    else if (!isBonus)
+    if (credits < 50 && !isBonus)
         c -= 1;
 
     std::cout << c << std::endl;
