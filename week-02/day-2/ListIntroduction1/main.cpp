@@ -22,10 +22,32 @@ int main() {
 //    Print out the 3rd element
     std::cout << "3rd element: " << names.at(2) << std::endl;
 //    Iterate through the list and print out each name
-    for (unsigned int i = 0; i < names.size(); i++) {
-        std::cout << "names: " << names.at(i) << std::endl;
+    std::vector<std::string>::iterator vectorIterator;
+
+    for (vectorIterator = names.begin(); vectorIterator != names.end(); vectorIterator++) {
+        std::cout << *vectorIterator << std::endl;
+    }
+//    Iterate through the list and print
+//    1. William
+//    2. John
+//    3. Amanda
+    int i = 1;
+    for (vectorIterator = names.begin(); vectorIterator != names.end(); vectorIterator++) {
+        std::cout << i <<". " << *vectorIterator << std::endl;
+        i++;
+    }
+//    Remove the 2nd element
+    names.erase(names.begin() + 1);
+
+//    Iterate through the list in a reversed order and print out each name
+    std::vector<std::string>::reverse_iterator reverseVectorIterator;
+
+    for (reverseVectorIterator = names.rbegin(); reverseVectorIterator != names.rend(); reverseVectorIterator++) {
+        std::cout << *reverseVectorIterator << std::endl;
     }
 
+//    Remove all elements
+    names.clear();
 
     return 0;
 }
