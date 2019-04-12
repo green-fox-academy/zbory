@@ -4,7 +4,7 @@ int recursiveBunnyEars(int n);
 
 int main()
 {
-    std::cout << recursiveBunnyEars(2) << std::endl;
+    std::cout << recursiveBunnyEars(100) << std::endl;
     return 0;
 }
 

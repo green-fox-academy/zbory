@@ -4,7 +4,7 @@ int recursiveNumberAdder(int n);
 
 int main()
 {
-    std::cout << recursiveNumberAdder(5) << std::endl;
+    std::cout << recursiveNumberAdder(2) << std::endl;
     return 0;
 }
 

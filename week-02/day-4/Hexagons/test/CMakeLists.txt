@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.12)
-project(line_in_the_middle)
+project(Hexagons)
 
 set(CMAKE_CXX_STANDARD 14)
 

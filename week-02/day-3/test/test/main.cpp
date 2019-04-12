@@ -1,20 +1,14 @@
 #include <iostream>
+#include <iostream>
 #include <SDL.h>
-#include <cstdlib>
-#include <ctime>
 
 //Screen dimension constants
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
 
-//Draw line from (x,y) to center
-void drawLineToCenter(int x, int y);
-
-//Random number from 0 to limit
-int randomNumber(int limit);
-
 //Draws geometry on the canvas
 void draw();
+
 
 //Starts up SDL and creates window
 bool init();
@@ -30,28 +24,9 @@ SDL_Renderer* gRenderer = nullptr;
 
 void draw()
 {
-    // Create a line drawing function that takes 2 parameters:
-    // The x and y coordinates of the line's starting point
-    // and draws a line from that point to the center of the canvas.
-    // Draw at least 3 lines with that function. Use loop for that.
-
-        drawLineToCenter(randomNumber(SCREEN_WIDTH), randomNumber(SCREEN_HEIGHT));
-        SDL_Delay(400);
-
+    // draw a red horizontal line to the canvas' middle.
+    // draw a green vertical line to the canvas' middle.
 }
-
-void drawLineToCenter(int x, int y){
-    SDL_SetRenderDrawColor(gRenderer, randomNumber(255), randomNumber(255), randomNumber(255), 255);
-    SDL_RenderDrawLine(gRenderer, x, y, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
-}
-
-int randomNumber(int limit){
-    //srand(time(0));
-
-    int result =  rand() % (limit + 1);
-    std::cout << result << std::endl;
-    return result;
-};
 
 bool init()
 {

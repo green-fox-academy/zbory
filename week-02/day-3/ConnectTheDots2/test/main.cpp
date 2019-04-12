@@ -1,28 +1,19 @@
 #include <iostream>
-#include <iostream>
 #include <SDL.h>
-#include <cmath>
-#include <ctime>
+#include <vector>
 
 //Screen dimension constants
-const int SCREEN_WIDTH = 620;
-const int SCREEN_HEIGHT = 620;
+const int SCREEN_WIDTH = 640;
+const int SCREEN_HEIGHT = 480;
 
 //Draws geometry on the canvas
-void draw(double multiplier);
+void draw(std::vector<std::vector<int>>);
 
-//Random number from 0 to limit
-int randomNumber(int limit)
-{
+//Draws a line
+void drawLine(int x0, int y0, int x1, int y1);
 
-
-    int result = rand() % (limit + 1);
-    std::cout << result << std::endl;
-    return result;
-};
-
-//Draws da shit
-void drawPattern(double x, double y, double side, int color);
+//Connects dots with lines
+void connectDots(std::vector<std::vector<int>> vector);
 
 //Starts up SDL and creates window
 bool init();
@@ -36,32 +27,38 @@ SDL_Window *gWindow = nullptr;
 //The window renderer
 SDL_Renderer *gRenderer = nullptr;
 
-int side = 300.0;
-
-void draw(double multiplier)
+void draw(std::vector<std::vector<int>> vector)
 {
-    //SDL_SetRenderDrawColor(gRenderer, 0, 0, 0, 255);
-    drawPattern(SCREEN_WIDTH / 2.0 - multiplier * 100, SCREEN_HEIGHT / 2.0 - multiplier * 100, side * multiplier, 28);
+    // Create a function that takes 1 parameter:
+    // An array of {x, y} points
+    // and connects them with green lines.
+    // Connect these to get a box: {{10, 10}, {290,  10}, {290, 290}, {10, 290}}
+    // Connect these: {{50, 100}, {70, 70}, {80, 90}, {90, 90}, {100, 70}, {120, 100}, {85, 130}, {50, 100}}
+    connectDots(vector);
 }
 
-void drawPattern(double x, double y, double side, int color)
+void feedDots(int x0, int y0, int x1, int y1)
 {
-    if (side < 15) return;
 
-    SDL_SetRenderDrawColor(gRenderer, 255, color, 28, 255);
-    SDL_RenderDrawLine(gRenderer, x - side / 2, y - side * sqrt(3) / 2, x + side / 2, y - side * sqrt(3) / 2);
-    SDL_RenderDrawLine(gRenderer, x + side / 2, y - side * sqrt(3) / 2, x + side, y);
-    SDL_RenderDrawLine(gRenderer, x + side, y, x + side / 2, y + side * sqrt(3) / 2);
-    SDL_RenderDrawLine(gRenderer, x + side / 2, y + side * sqrt(3) / 2, x - side / 2, y + side * sqrt(3) / 2);
-    SDL_RenderDrawLine(gRenderer, x - side / 2, y + side * sqrt(3) / 2, x - side, y);
-    SDL_RenderDrawLine(gRenderer, x - side, y, x - side / 2, y - side * sqrt(3) / 2);
-
-    drawPattern(x - side / 4, y - side / 2 * sqrt(3) / 2, side / 2, color + 33);
-    drawPattern(x + side / 2, y, side / 2, color + 33);
-    drawPattern(x - side / 4, y + side / 2 * sqrt(3) / 2, side / 2, color + 33);
-
+    if (x1 < 1 || y1 < 1) return;
+    x1 = 2 * x1 / 3;
+    y1 = 2 * y1 / 3;
+    drawLine(x0, y0, x1, y1);
 }
 
+void connectDots(std::vector<std::vector<int>> vector)
+{
+    for (unsigned int i = 0; i < vector.size() - 1; i++) {
+        drawLine(vector[i][0], vector[i][1], vector[i + 1][0], vector[i + 1][1]);
+    }
+    drawLine(vector[0][0], vector[0][1], vector[vector.size() - 1][0], vector[vector.size() - 1][1]);
+}
+
+void drawLine(int x0, int y0, int x1, int y1)
+{
+    SDL_SetRenderDrawColor(gRenderer, 26, 204, 59, 255);
+    SDL_RenderDrawLine(gRenderer, x0, y0, x1, y1);
+}
 
 bool init()
 {
@@ -72,7 +69,7 @@ bool init()
     }
 
     //Create window
-    gWindow = SDL_CreateWindow("Line in the middle", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH,
+    gWindow = SDL_CreateWindow("Connect the dots", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH,
                                SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
     if (gWindow == nullptr) {
         std::cout << "Window could not be created! SDL Error: " << SDL_GetError() << std::endl;
@@ -112,17 +109,25 @@ int main(int argc, char *args[])
         return -1;
     }
 
-    //Seeding random generator
-    srand(time(0));
-
-    //Scaling multiplier
-    double multiplier = 1.0;
-
     //Main loop flag
     bool quit = false;
 
     //Event handler
     SDL_Event e;
+
+    std::vector<std::vector<int>> box = {{10,  10},
+                                         {290, 10},
+                                         {290, 290},
+                                         {10,  290}};
+
+    std::vector<std::vector<int>> fox = {{50,  100},
+                                         {70,  70},
+                                         {80,  90},
+                                         {90,  90},
+                                         {100, 70},
+                                         {120, 100},
+                                         {85,  130},
+                                         {50,  100}};
 
     //While application is running
     while (!quit) {
@@ -138,8 +143,7 @@ int main(int argc, char *args[])
         SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
         SDL_RenderClear(gRenderer);
 
-        multiplier += 0.003;
-        draw(multiplier);
+        draw(fox);
 
         //Update screen
         SDL_RenderPresent(gRenderer);

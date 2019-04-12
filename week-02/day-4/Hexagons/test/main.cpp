@@ -12,7 +12,7 @@ void draw();
 
 
 //Draws da shit
-void drawPattern(int x, int y, int side);
+void drawPattern(double x, double y, double side);
 
 //Starts up SDL and creates window
 bool init();
@@ -26,15 +26,15 @@ SDL_Window *gWindow = nullptr;
 //The window renderer
 SDL_Renderer *gRenderer = nullptr;
 
-int side = 300;
+int side = 300.0;
 
 void draw()
 {
     SDL_SetRenderDrawColor(gRenderer, 0, 0, 0, 255);
-    drawPattern(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, side);
+    drawPattern(SCREEN_WIDTH / 2.0, SCREEN_HEIGHT / 2.0, side);
 }
 
-void drawPattern(int x, int y, int side)
+void drawPattern(double x, double y, double side)
 {
     if (side < 5) return;
 
@@ -52,7 +52,7 @@ void drawPattern(int x, int y, int side)
 }
 
 
-void drawRect(int x, int y, int size)
+void drawRect(double x, double y, double size)
 {
     SDL_SetRenderDrawColor(gRenderer, 0, 0, 0, 255);
     SDL_Rect rectangle = {x, y, size, size};

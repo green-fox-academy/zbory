@@ -16,7 +16,7 @@ int main() {
     askNumbers(numbers, amount);
 
     int maxIndex = findMax(numbers, amount);
-    
+
     std::cout << "max value: " << numbers[maxIndex] << ", address: " << &numbers[maxIndex];
     return 0;
 }

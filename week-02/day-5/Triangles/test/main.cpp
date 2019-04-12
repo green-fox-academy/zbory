@@ -3,6 +3,7 @@
 #include <SDL.h>
 #include <cmath>
 
+
 //Screen dimension constants
 const int SCREEN_WIDTH = 620;
 const int SCREEN_HEIGHT = 620;

@@ -10,10 +10,10 @@ const int SCREEN_HEIGHT = 730;
 void draw();
 
 //Draws rectangle
-void drawRect(int x, int y, int size);
+void drawRect(double x, double y, double size);
 
 //Draws da shit
-void drawPattern(int x, int y, int size);
+void drawPattern(double x, double y, double size);
 
 //Starts up SDL and creates window
 bool init();
@@ -31,10 +31,10 @@ void draw()
 {
 
 //    drawPattern(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, SCREEN_WIDTH / 3);
-    drawPattern(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, SCREEN_WIDTH / 3);
+    drawPattern(SCREEN_WIDTH / 2.0, SCREEN_HEIGHT / 2.0, SCREEN_WIDTH / 3.0);
 }
 
-void drawPattern(int x, int y, int size)
+void drawPattern(double x, double y, double size)
 {
     if (size < 1) return;
 
@@ -51,7 +51,7 @@ void drawPattern(int x, int y, int size)
 }
 
 
-void drawRect(int x, int y, int size)
+void drawRect(double x, double y, double size)
 {
     SDL_SetRenderDrawColor(gRenderer, 0, 0, 0, 255);
     SDL_Rect rectangle = {x, y, size, size};

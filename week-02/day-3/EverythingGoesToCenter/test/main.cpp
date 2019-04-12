@@ -1,20 +1,15 @@
 #include <iostream>
 #include <SDL.h>
-#include <cstdlib>
-#include <ctime>
 
 //Screen dimension constants
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
 
-//Draw line from (x,y) to center
-void drawLineToCenter(int x, int y);
-
-//Random number from 0 to limit
-int randomNumber(int limit);
-
 //Draws geometry on the canvas
 void draw();
+
+//Draws a single line to the center from (x,y)
+void drawLineToCenter(int x, int y);
 
 //Starts up SDL and creates window
 bool init();
@@ -33,25 +28,18 @@ void draw()
     // Create a line drawing function that takes 2 parameters:
     // The x and y coordinates of the line's starting point
     // and draws a line from that point to the center of the canvas.
-    // Draw at least 3 lines with that function. Use loop for that.
+    // Fill the canvas with lines from the edges, every 20 px, to the center.
+}
 
-        drawLineToCenter(randomNumber(SCREEN_WIDTH), randomNumber(SCREEN_HEIGHT));
-        SDL_Delay(400);
+void drawLines(int x, int y){
 
 }
 
 void drawLineToCenter(int x, int y){
-    SDL_SetRenderDrawColor(gRenderer, randomNumber(255), randomNumber(255), randomNumber(255), 255);
+    SDL_SetRenderDrawColor(gRenderer, 255, 75, 5, SDL_ALPHA_OPAQUE);
     SDL_RenderDrawLine(gRenderer, x, y, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
 }
 
-int randomNumber(int limit){
-    //srand(time(0));
-
-    int result =  rand() % (limit + 1);
-    std::cout << result << std::endl;
-    return result;
-};
 
 bool init()
 {
@@ -63,7 +51,7 @@ bool init()
     }
 
     //Create window
-    gWindow = SDL_CreateWindow( "Line in the middle", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
+    gWindow = SDL_CreateWindow( "Function to center", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
     if( gWindow == nullptr )
     {
         std::cout << "Window could not be created! SDL Error: " << SDL_GetError() << std::endl;

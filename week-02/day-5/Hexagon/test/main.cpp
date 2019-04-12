@@ -1,7 +1,8 @@
 #include <iostream>
-#include <iostream>
+#include <vector>
 #include <SDL.h>
 #include <cmath>
+#include "SDL2_gfxPrimitives.h"
 
 //Screen dimension constants
 const int SCREEN_WIDTH = 620;
@@ -12,10 +13,10 @@ void draw();
 
 
 //Draws da shit
-void drawPattern(int x, int y, int side);
+void drawPattern(double x, double y, double side);
 
 //Draws a hexagon
-void drawHexagon(int x, int y, int size);
+void drawHexagon(double x, double y, double size);
 
 //Starts up SDL and creates window
 bool init();
@@ -29,15 +30,15 @@ SDL_Window *gWindow = nullptr;
 //The window renderer
 SDL_Renderer *gRenderer = nullptr;
 
-int side = 300;
+int side = 300.0;
 
 void draw()
 {
     SDL_SetRenderDrawColor(gRenderer, 0, 0, 0, 255);
-    drawPattern(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, side);
+    drawPattern(SCREEN_WIDTH / 2.0, SCREEN_HEIGHT / 2.0, side);
 }
 
-void drawPattern(int x, int y, int side)
+void drawPattern(double x, double y, double side)
 {
     if (side < 2) return;
 
@@ -54,14 +55,23 @@ void drawPattern(int x, int y, int side)
 }
 
 
-void drawHexagon(int x, int y, int side)
+void drawHexagon(double x, double y, double side)
 {
+
+/*    std::vector<Sint16> hexagonCoordX = {x - side / 2, x + side / 2, x + side, x + side / 2, x - side / 2, x - side};
+    std::vector<Sint16> hexagonCoordY = {y - side * (int)sqrt(3) / 2, y - side * (int)sqrt(3) / 2, y, y + side * (int)sqrt(3) / 2,
+                                         y + side * (int)sqrt(3) / 2, y};
+
+
+    filledPolygonColor(gRenderer, hexagonCoordX, hexagonCoordY, 6, 0xFFFFFFFF);*/
+
     SDL_RenderDrawLine(gRenderer, x - side / 2, y - side * sqrt(3) / 2, x + side / 2, y - side * sqrt(3) / 2);
     SDL_RenderDrawLine(gRenderer, x + side / 2, y - side * sqrt(3) / 2, x + side, y);
     SDL_RenderDrawLine(gRenderer, x + side, y, x + side / 2, y + side * sqrt(3) / 2);
     SDL_RenderDrawLine(gRenderer, x + side / 2, y + side * sqrt(3) / 2, x - side / 2, y + side * sqrt(3) / 2);
     SDL_RenderDrawLine(gRenderer, x - side / 2, y + side * sqrt(3) / 2, x - side, y);
     SDL_RenderDrawLine(gRenderer, x - side, y, x - side / 2, y - side * sqrt(3) / 2);
+
 
 }
 
@@ -74,7 +84,7 @@ bool init()
     }
 
     //Create window
-    gWindow = SDL_CreateWindow("Line in the middle", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH,
+    gWindow = SDL_CreateWindow("Hexagon", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH,
                                SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
     if (gWindow == nullptr) {
         std::cout << "Window could not be created! SDL Error: " << SDL_GetError() << std::endl;

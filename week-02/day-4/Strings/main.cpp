@@ -2,9 +2,11 @@
 
 void recursiveChangeX(std::string &string, std::string &result);
 
+std::string recursiveChangeX2(std::string string);
+
 int main()
 {
-    std::string sample = "xycvxfssdxxx";
+    std::string sample = "Sexxx is fun!";
     std::string result = "";
     recursiveChangeX(sample, result);
     std::cout << result << std::endl;
@@ -22,4 +24,19 @@ void recursiveChangeX(std::string &string, std::string &result)
     }
 
     return recursiveChangeX(string.erase(string.size() - 1, 1), result);
+}
+
+/*char recursiveChangeX2(std::string string)
+{
+    if (string.size() == 0) return '';
+
+    if (string.at(string.size() - 1) == 'x') {
+        return 'X';
+    } else {
+        return string.at(string.size() - 1);
+    }
+
+    return recursiveChangeX(string.erase(string.size() - 1, 1));
+}*/
+
 }
