@@ -1,6 +1,8 @@
 #include <iostream>
 #include <fstream>
 
+void divide(int number);
+
 int main() {
     // Create a function that takes a number
     // divides ten with it,
@@ -12,13 +14,17 @@ int main() {
     std::cin >> number;
 
     try{
-        if(number == 0){
-            throw std::runtime_error("fail");
-        }
-        std::cout << 10 / number;
+        divide(number);
     }catch(std::runtime_error e){
         std::cout << e.what();
     }
 
     return 0;
+}
+
+void divide(int number){
+    if(number == 0){
+        throw std::runtime_error("fail");
+    }
+    std::cout << 10 / number;
 }
