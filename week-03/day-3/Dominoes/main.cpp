@@ -60,9 +60,11 @@ Domino findDomino(int number, std::vector<Domino> &dominoes)
     }
 }
 
+/*
 void orderDominoRecursive(std::vector<Domino> dominoes, Domino currentDomino){
 
     if(dominoes.size() == 0) return;
 
     orderDominoRecursive(findDomino(currentDomino.getValues().second, dominoes));
 }
+*/
