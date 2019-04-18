@@ -5,25 +5,28 @@
 #ifndef PIRATES_PIRATE_H
 #define PIRATES_PIRATE_H
 
-#include <iostream>
 
 
 class Pirate {
 public:
     Pirate();
+    Pirate(std::string name);
+    std::string getName();
+    int getIntoxicationLevel();
     bool isAlive();
-    void setAlive(bool alive);
+    bool isConscious();
     void setPassedOut(bool state);
     void drinkSomeRum();
     void howsItGoingMate();
     void die();
     void brawl(Pirate pirate);
+    std::string toString();
 
 private:
+    std::string name;
     bool passedOut;
     bool alive;
     int intoxicationLevel;
-    int randomNumber(int limit);
 };
 
 
