@@ -3,9 +3,9 @@
 
 int main()
 {
-    PostIt("orange", "Idea 1", "blue");
-    PostIt("pink", "Awsome", "black");
-    PostIt("yellow", "Superb!", "green");
+    PostIt p1("orange", "Idea 1", "blue");
+    PostIt p2("pink", "Awsome", "black");
+    PostIt p3("yellow", "Superb!", "green");
 
     return 0;
 }

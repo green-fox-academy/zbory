@@ -21,7 +21,7 @@ int main(int argc, char *args[])
     fleet.add(Thing("Remove the obstacles"));
     fleet.add(t1);
     fleet.add(t2);
-    
+
     fleet.toString();
 
     std::cout << fleet.toString() << std::endl;
