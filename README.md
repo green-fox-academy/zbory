@@ -9,6 +9,6 @@ Hello! Here you can find the solutions created during my Greenfox Academy traini
 * [WEEK 3](https://github.com/green-fox-academy/zbory/tree/master/week-03) - File IO and Classes
 
 
-##Other projects
+## Other projects
 
 * [Binary Search](https://github.com/zbory/other-projects/tree/master/BinarySearch) - Binary search implemented with vector
