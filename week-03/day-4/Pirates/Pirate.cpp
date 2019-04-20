@@ -15,10 +15,8 @@ Pirate::Pirate()
 
 Pirate::Pirate(std::string name)
 {
+    Pirate();
     this->name = name;
-    intoxicationLevel = 0;
-    alive = true;
-    passedOut = false;
 }
 
 std::string Pirate::getName()

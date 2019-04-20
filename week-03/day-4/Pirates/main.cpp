@@ -21,6 +21,39 @@ int main()
                             "    ^^^^      ^^^^     ^^^    ^^\n"
                             "         ^^^^      ^^^";
 
+    std::string asciiSkull = " _;~)                  (~;_\n"
+                        "(   |                  |   )\n"
+                        " ~', ',    ,''~'',   ,' ,'~\n"
+                        "     ', ','       ',' ,'\n"
+                        "       ',: {'} {'} :,'\n"
+                        "         ;   /^\\   ;\n"
+                        "          ~\\  ~  /~\n"
+                        "        ,' ,~~~~~, ',\n"
+                        "      ,' ,' ;~~~; ', ',\n"
+                        "    ,' ,'    '''    ', ',\n"
+                        "  (~  ;               ;  ~)\n"
+                        "   -;_)               (_;-";
+
+    std::string asciiTreasure = "                            _.--.\n"
+                                "                        _.-'_:-'||\n"
+                                "                    _.-'_.-::::'||\n"
+                                "               _.-:'_.-::::::'  ||\n"
+                                "             .'`-.-:::::::'     ||\n"
+                                "            /.'`;|:::::::'      ||_\n"
+                                "           ||   ||::::::'     _.;._'-._\n"
+                                "           ||   ||:::::'  _.-!oo @.!-._'-.\n"
+                                "           \\'.  ||:::::.-!()oo @!()@.-'_.|\n"
+                                "            '.'-;|:.-'.&$@.& ()$%-'o.'\\U||\n"
+                                "              `>'-.!@%()@'@_%-'_.-o _.|'||\n"
+                                "               ||-._'-.@.-'_.-' _.-o  |'||\n"
+                                "               ||=[ '-._.-\\U/.-'    o |'||\n"
+                                "               || '-.]=|| |'|      o  |'||\n"
+                                "               ||      || |'|        _| ';\n"
+                                "               ||      || |'|    _.-'_.-'\n"
+                                "               |'-._   || |'|_.-'_.-'\n"
+                                "            jgs '-._'-.|| |' `_.-'\n"
+                                "                    '-.||_/.-'";
+
     //Redirecting stdout to file
     std::fstream file;
     file.open("war_output.txt", std::ios::out);
@@ -57,10 +90,12 @@ int main()
     Armada armada1;
     Armada armada2;
 
-    armada1.war(armada2);
+    bool result = armada1.war(armada2);
 
-//    ship1.printCrewState();
-//    ship2.printCrewState();
+    if(result)
+        std::cout << asciiTreasure;
+    else
+        std::cout << asciiSkull;
 
 
     return 0;

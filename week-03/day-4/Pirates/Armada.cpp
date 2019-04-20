@@ -7,6 +7,8 @@
 
 Armada::Armada()
 {
+    std::cout << "\nARMADA\n";
+    std::cout << "------------------------------------------------------\n";
     maxArmadaSize = 2;
     fillArmada();
 }
@@ -35,16 +37,16 @@ bool Armada::war(Armada &armada)
             j++;
             //If j got to the end of the enemy aramada
             if (j == armada.ships.size()) {
-                std::cout << "\nWe showed them whose BOSS!";
+                std::cout << "\nWe showed them whose BOSS!\n";
                 return true;
             }
         }
         if (this->ships[i].countAlive() == 0) {
-            std::cout << std::endl << ships[i].getName() << " is now a wreck on the ocean bed.";
+            std::cout << std::endl << ships[i].getName() << " is now a wreck on the ocean bed.\n";
             i++;
             //If i got to the end of this armada
             if (i == this->ships.size()) {
-                std::cout << "\nThe enemy has kicked our asses...";
+                std::cout << "\nThe enemy has kicked our asses...\n";
                 return false;
             }
         }

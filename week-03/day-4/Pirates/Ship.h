@@ -20,6 +20,7 @@ public:
     int countAlive();
     int countDead();
     int countPassedOut();
+    bool hasParrot();
     bool battle(Ship &enemy);
     void party();
 
@@ -28,6 +29,7 @@ private:
     Pirate captain;
     std::vector<Pirate> crew;
     int maxCrewSize;
+    bool parrotOnBoard;
 };
 
 

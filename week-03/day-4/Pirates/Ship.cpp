@@ -9,15 +9,16 @@
 Ship::Ship()
 {
     name = "Ship" + std::to_string(rand() % 100);
-    maxCrewSize = 20;
+    maxCrewSize = 40;
     fillShip();
+    parrotOnBoard = (rand() % 2) ? true : false;
     printCrewState();
 }
 
 Ship::Ship(std::string name)
 {
-    this->name = name;
     Ship();
+    this->name = name;
 }
 
 std::string Ship::getName()
@@ -73,13 +74,18 @@ int Ship::countPassedOut()
     return count;
 }
 
+bool Ship::hasParrot(){
+    return parrotOnBoard;
+}
+
 bool Ship::battle(Ship &enemy)
 {
-    //Original score definition modified by substracting half the drunk ones from score
-    int score = countAlive() - captain.getIntoxicationLevel() - countPassedOut() / 2;
-    int enemyScore = enemy.countAlive() - enemy.captain.getIntoxicationLevel() - enemy.countPassedOut() / 2;
+    //Original score definition modified by substracting half the drunk ones from score, if the ship has a parrot passed out
+    //pirates don't count as negative
+    int score = countAlive() - captain.getIntoxicationLevel() - hasParrot() ? 0 : countPassedOut() / 2;
+    int enemyScore = enemy.countAlive() - enemy.captain.getIntoxicationLevel() - enemy.hasParrot() ? 0 : enemy.countPassedOut() / 2;
 
-    std::cout << "\nBattle!\n";
+    std::cout << "\nBattle!\n" << name << " VS " << enemy.name << std::endl;
     if (score > enemyScore) {
         //This ship wins
         std::cout << std::endl << enemy.name << " has lost\n";
@@ -129,5 +135,6 @@ void Ship::printCrewState()
     std::cout << name << std::endl;
     std::cout << "Captain " << captain.toString();
     std::cout << "There are " << countAlive() << " lard brained screechy gobshytes on board.\n";
+    std::cout << (hasParrot() ? "The ship has a parrot!\n" : "This ship has no parrot.\n");
 //    std::cout << "------------------------------------------------------\n";
 }
