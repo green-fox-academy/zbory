@@ -1,7 +1,10 @@
 #include <iostream>
 #include <ctime>
 #include <vector>
+#include <fstream>
+#include <string>
 #include "Ship.h"
+#include "Armada.h"
 
 
 int main()
@@ -18,9 +21,25 @@ int main()
                             "    ^^^^      ^^^^     ^^^    ^^\n"
                             "         ^^^^      ^^^";
 
+    //Redirecting stdout to file
+    std::fstream file;
+    file.open("war_output.txt", std::ios::out);
+
+    // Backup streambuffers of  cout
+//    streambuf* stream_buffer_cout = cout.rdbuf();
+//    streambuf* stream_buffer_cin = cin.rdbuf();
+
+    // Get the streambuffer of the file
+    std::streambuf* stream_buffer_file = file.rdbuf();
+
+    // Redirect cout to file
+    std::cout.rdbuf(stream_buffer_file);
+
+
+
     std::cout << asciiShip << std::endl;
     //Creating ships
-    Ship ship1("Black Pearl");
+/*    Ship ship1("Black Pearl");
     Ship ship2("The Dirty Titanic");
     //Filling them with crew
     ship1.fillShip();
@@ -32,13 +51,17 @@ int main()
 
 
     ship1.printCrewState();
-    ship2.printCrewState();
+    ship2.printCrewState();*/
 
     //Battle
-    bool result = ship1.battle(ship2);
+    Armada armada1;
+    Armada armada2;
+
+    armada1.war(armada2);
 
 //    ship1.printCrewState();
 //    ship2.printCrewState();
+
 
     return 0;
 }

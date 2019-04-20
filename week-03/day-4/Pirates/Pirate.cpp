@@ -51,10 +51,11 @@ void Pirate::drinkSomeRum()
 {
     if (!alive) {
         std::cout << "He's dead...\n";
-    } else if (intoxicationLevel == 5) {
-        setPassedOut(true);
-    } else {
+    } else if (!passedOut) {
         intoxicationLevel++;
+    }
+    if (intoxicationLevel == 5 && !passedOut) {
+        setPassedOut(true);
     }
 
 }

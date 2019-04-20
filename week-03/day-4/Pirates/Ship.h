@@ -18,7 +18,9 @@ public:
     void fillShip();
     void printCrewState();
     int countAlive();
-    bool battle(Ship enemy);
+    int countDead();
+    int countPassedOut();
+    bool battle(Ship &enemy);
     void party();
 
 private:

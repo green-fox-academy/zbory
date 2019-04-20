@@ -9,13 +9,15 @@
 Ship::Ship()
 {
     name = "Ship" + std::to_string(rand() % 100);
-    maxCrewSize = 100;
+    maxCrewSize = 20;
+    fillShip();
+    printCrewState();
 }
 
 Ship::Ship(std::string name)
 {
     this->name = name;
-    maxCrewSize = 100;
+    Ship();
 }
 
 std::string Ship::getName()
@@ -51,17 +53,41 @@ int Ship::countAlive()
     return count;
 }
 
-bool Ship::battle(Ship enemy)
+int Ship::countDead()
 {
-    int score = countAlive() - captain.getIntoxicationLevel();
-    int enemyScore = enemy.countAlive() - enemy.captain.getIntoxicationLevel();
+    int count = 0;
+    for (int i = 0; i < crew.size(); ++i) {
+        if (!crew[i].isAlive())
+            count++;
+    }
+    return count;
+}
+
+int Ship::countPassedOut()
+{
+    int count = 0;
+    for (int i = 0; i < crew.size(); ++i) {
+        if (crew[i].isConscious())
+            count++;
+    }
+    return count;
+}
+
+bool Ship::battle(Ship &enemy)
+{
+    //Original score definition modified by substracting half the drunk ones from score
+    int score = countAlive() - captain.getIntoxicationLevel() - countPassedOut() / 2;
+    int enemyScore = enemy.countAlive() - enemy.captain.getIntoxicationLevel() - enemy.countPassedOut() / 2;
 
     std::cout << "\nBattle!\n";
     if (score > enemyScore) {
         //This ship wins
         std::cout << std::endl << enemy.name << " has lost\n";
-        for (int i = 0; i < rand() % enemy.countAlive(); i++) {
-            enemy.getPirate(i)->die();
+        int enemyToKill = rand() % enemy.countAlive() + 1;
+        int enemyDead = enemy.countDead();
+        for (int i = 0; i <  enemyToKill; i++) {
+            //To set the rest of the crew dead, not the first n element again, i is offset by the amount of dead
+            enemy.getPirate(enemyDead + i)->die();
         }
         std::cout << std::endl << name << " has won and having a party!\n";
         party();
@@ -69,8 +95,11 @@ bool Ship::battle(Ship enemy)
         //Enemy ship wins
     } else {
         std::cout << std::endl << name << " has lost\n";
-        for (int i = 0; i < rand() % countAlive(); i++) {
-            getPirate(i)->die();
+        int toKill = rand() % countAlive() + 1;
+        int dead = countDead();
+        for (int i = 0; i < toKill; i++) {
+            //To set the rest of the crew dead, not the first n element again, i is offset by the amount of dead
+            getPirate(dead + i)->die();
         }
         std::cout << std::endl << enemy.name << " has won and having a party!\n";
         enemy.party();
@@ -79,14 +108,16 @@ bool Ship::battle(Ship enemy)
 }
 
 void Ship::party(){
-    int numberOfDrinks = 10;
+    int numberOfDrinks = 5;
 
-    for(int i = 0; i < rand() % numberOfDrinks; i++){
+    int drinksServed = rand() % numberOfDrinks;
+    for(int i = 0; i < drinksServed; i++){
         captain.drinkSomeRum();
     }
 
     for (int i = 0; i < crew.size(); ++i) {
-        for(int j = 0; j < rand() % numberOfDrinks; j++){
+        drinksServed = rand() % numberOfDrinks;
+        for(int j = 0; j < drinksServed; j++){
             crew[i].drinkSomeRum();
         }
     }
