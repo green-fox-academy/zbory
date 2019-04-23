@@ -12,3 +12,4 @@ Hello! Here you can find the solutions created during my Greenfox Academy traini
 ## Other projects
 
 * [Binary Search](https://github.com/zbory/other-projects/tree/master/BinarySearch) - Binary search implemented with vector
+* [TicTacToe Game](https://github.com/zbory/other-projects/tree/master/TicTacToe) - A simple TicTacToe game created with SDL2
