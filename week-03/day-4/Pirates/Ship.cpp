@@ -15,9 +15,8 @@ Ship::Ship()
     printCrewState();
 }
 
-Ship::Ship(std::string name)
+Ship::Ship(std::string name) :Ship()
 {
-    Ship();
     this->name = name;
 }
 

@@ -33,7 +33,7 @@ bool Armada::war(Armada &armada)
         armada.ships[j].printCrewState();
 
         if (armada.ships[j].countAlive() == 0) {
-            std::cout << std::endl << armada.ships[j].getName() << " is now a wreck on the ocean bed.";
+            std::cout << std::endl << armada.ships[j].getName() << " is now a wreck on the ocean bed.\n";
             j++;
             //If j got to the end of the enemy aramada
             if (j == armada.ships.size()) {

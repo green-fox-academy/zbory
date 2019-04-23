@@ -1,0 +1,14 @@
+//
+// Created by zbora on 2019-04-23.
+//
+
+#ifndef GREENFOXORGANIZATION_PERSON_H
+#define GREENFOXORGANIZATION_PERSON_H
+
+
+class Person {
+
+};
+
+
+#endif //GREENFOXORGANIZATION_PERSON_H
