@@ -52,3 +52,5 @@ TEST(countLetterFunctionTest, CheckWithSameLettertString)
 
     ASSERT_EQ(result.size(), 1);
 }
+
+

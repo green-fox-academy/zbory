@@ -10,7 +10,7 @@ set(PROJECT_TESTS_NAME MyApp_tests)
 set(PATH_TO_GOOGLETEST "C:/Users/zbora/Downloads/googletest")
 
 # Change this to your project name (optional)
-set(PROJECT_NAME Anagram)
+set(PROJECT_NAME CountLetters)
 
 
 project(${PROJECT_NAME})
