@@ -7,9 +7,12 @@
 
 
 #include <string>
+#include <vector>
 
 
 std::string getApple();
+
+int sum(std::vector<int> vector);
 
 
 
