@@ -22,6 +22,7 @@ int main()
 
     char *result = repeat_string(string, number);
     printf("%s", result);
+    free(result);
     return 0;
 }
 
