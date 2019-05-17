@@ -11,6 +11,8 @@ int main()
     append_item(head, 101);
     prepend_item(head, 7);
 
+    printf("Items count: %d\n", get_ite_count(head));
+    printf("Items:\n");
     linked_list_t *it = head;
     while (it->next != NULL){
         printf("%d\n", it->data);

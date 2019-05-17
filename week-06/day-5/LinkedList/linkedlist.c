@@ -55,3 +55,14 @@ int insert_after(linked_list_t *head, int data, linked_list_t *after_this)
 
     return 1;
 }
+
+int get_ite_count(linked_list_t *head)
+{
+    int count = 0;
+    linked_list_t *it = head;
+    while (it->next != NULL) {
+        count++;
+        it = it->next;
+    }
+    return count;
+}
