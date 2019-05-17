@@ -7,8 +7,12 @@
 int create_list(linked_list_t **head)
 {
     *head = (linked_list_t *) malloc(sizeof(linked_list_t));
+    if (*head == NULL)
+        return 0;
     (*head)->data = 0;
     (*head)->next = NULL;
+
+    return 1;
 }
 
 int append_item(linked_list_t *head, int data)
@@ -20,18 +24,34 @@ int append_item(linked_list_t *head, int data)
     new_item->next = NULL;
 
     linked_list_t *it = head;
-    while (it->next != NULL){
+    while (it->next != NULL) {
         it = it->next;
     }
     it->next = new_item;
+
     return 1;
 }
 
-int prepend_item(linked_list_t *head, int data){
+int prepend_item(linked_list_t *head, int data)
+{
     linked_list_t *new_item = (linked_list_t *) malloc(sizeof(linked_list_t));
     if (new_item == NULL)
         return 0;
     new_item->data = data;
     new_item->next = head->next;
     head->next = new_item;
+
+    return 1;
+}
+
+int insert_after(linked_list_t *head, int data, linked_list_t *after_this)
+{
+    linked_list_t *new_item = (linked_list_t *) malloc(sizeof(linked_list_t));
+    if (new_item == NULL)
+        return 0;
+    new_item->data = data;
+    new_item->next = after_this->next;
+    after_this->next = new_item;
+
+    return 1;
 }

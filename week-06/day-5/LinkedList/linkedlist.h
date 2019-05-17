@@ -16,4 +16,6 @@ int append_item(linked_list_t *head, int data);
 
 int prepend_item(linked_list_t *head, int data);
 
+int insert_after(linked_list_t *head, int data, linked_list_t *after_this);
+
 #endif //LINKEDLIST_LINKEDLIST_H
