@@ -23,6 +23,11 @@ int append(linked_list_t *head, int data)
     return 1;
 }
 
-int prepend(linked_list_t *head, int data){
-    
+int prepend_item(linked_list_t *head, int data){
+    linked_list_t *new_item = (linked_list_t *) malloc(sizeof(linked_list_t));
+    if (new_item == NULL)
+        return 0;
+    new_item->data = data;
+    new_item->next = head->next;
+    head->next = new_item;
 }

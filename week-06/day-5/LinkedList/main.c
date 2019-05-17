@@ -9,6 +9,7 @@ int main()
     append_item(head, 42);
     append_item(head, 802701);
     append_item(head, 101);
+    prepend_item(head, 7);
 
     printf("Hello, World!\n");
     return 0;
