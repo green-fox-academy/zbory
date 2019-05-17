@@ -11,6 +11,11 @@ int main()
     append_item(head, 101);
     prepend_item(head, 7);
 
-    printf("Hello, World!\n");
+    linked_list_t *it = head;
+    while (it->next != NULL){
+        printf("%d\n", it->data);
+        it = it->next;
+    }
+
     return 0;
 }

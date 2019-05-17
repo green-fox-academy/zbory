@@ -11,7 +11,7 @@ int create_list(linked_list_t **head)
     (*head)->next = NULL;
 }
 
-int append(linked_list_t *head, int data)
+int append_item(linked_list_t *head, int data)
 {
     linked_list_t *new_item = (linked_list_t *) malloc(sizeof(linked_list_t));
     if (new_item == NULL)
@@ -19,7 +19,11 @@ int append(linked_list_t *head, int data)
     new_item->data = data;
     new_item->next = NULL;
 
-    head->next = new_item;
+    linked_list_t *it = head;
+    while (it->next != NULL){
+        it = it->next;
+    }
+    it->next = new_item;
     return 1;
 }
 
