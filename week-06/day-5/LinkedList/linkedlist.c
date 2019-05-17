@@ -66,3 +66,10 @@ int get_ite_count(linked_list_t *head)
     }
     return count;
 }
+
+int is_empty(linked_list_t *head){
+    if(head->next == NULL)
+        return 1;
+    else
+        return 0;
+}

@@ -20,4 +20,6 @@ int insert_after(linked_list_t *head, int data, linked_list_t *after_this);
 
 int get_ite_count(linked_list_t *head);
 
+int is_empty(linked_list_t *head);
+
 #endif //LINKEDLIST_LINKEDLIST_H
