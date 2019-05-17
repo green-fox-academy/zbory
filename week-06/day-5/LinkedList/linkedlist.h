@@ -22,4 +22,6 @@ int get_ite_count(linked_list_t *head);
 
 int is_empty(linked_list_t *head);
 
+int delete_by_value(linked_list_t *head, int value);
+
 #endif //LINKEDLIST_LINKEDLIST_H

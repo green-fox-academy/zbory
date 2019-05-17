@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include "linkedlist.h"
 
+void print_list(linked_list_t *head);
+
 int main()
 {
     linked_list_t *head;
@@ -13,15 +15,28 @@ int main()
     append_item(head, 802701);
     append_item(head, 101);
     prepend_item(head, 7);
+    append_item(head, 3);
 
     printf("The list is %s!\n", is_empty(head) ? "empty" : "not empty");
     printf("Item count: %d\n", get_ite_count(head));
     printf("Items:\n");
-    linked_list_t *it = head;
-    while (it->next != NULL){
-        printf("%d\n", it->data);
-        it = it->next;
-    }
+    print_list(head);
+
+    int to_delete = 101;
+    printf("Deleting item %d!\n", to_delete);
+    delete_by_value(head, to_delete);
+    print_list(head);
+
 
     return 0;
+}
+
+void print_list(linked_list_t *head)
+{
+    linked_list_t *it = head;
+    do {
+        //head non-item not printed
+        it = it->next;
+        printf("%d\n", it->data);
+    } while (it->next != NULL);
 }

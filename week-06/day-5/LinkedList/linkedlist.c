@@ -64,12 +64,33 @@ int get_ite_count(linked_list_t *head)
         count++;
         it = it->next;
     }
+    //count -1 to exclude head
+    //count +1 because it doesn't increment at the last item
     return count;
 }
 
-int is_empty(linked_list_t *head){
-    if(head->next == NULL)
+int is_empty(linked_list_t *head)
+{
+    if (head->next == NULL)
         return 1;
     else
         return 0;
+}
+
+int delete_by_value(linked_list_t *head, int value)
+{
+    int deleted_items = 0;
+    linked_list_t *previous_item = NULL;
+    linked_list_t *it = head;
+    while (it->next != NULL) {
+        if (it->data == value) {
+            previous_item->next = it->next;
+            free(it);
+            deleted_items++;
+            it = previous_item;
+        }
+        previous_item = it;
+        it = it->next;
+    }
+    return deleted_items;
 }
