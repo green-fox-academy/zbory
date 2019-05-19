@@ -7,6 +7,8 @@ Hello! Here you can find the solutions created during my Greenfox Academy traini
 * [WEEK 1](https://github.com/green-fox-academy/zbory/tree/master/week-01) - GIT, CLI, Programming basics and Functions
 * [WEEK 2](https://github.com/green-fox-academy/zbory/tree/master/week-02) - Pointers, Data structures, and Drawing
 * [WEEK 3](https://github.com/green-fox-academy/zbory/tree/master/week-03) - File IO and Classes
+* [WEEK 4](https://github.com/green-fox-academy/zbory/tree/master/week-04) - Object Orientation and Testing
+* [WEEK 6](https://github.com/green-fox-academy/zbory/tree/master/week-04) - Basics of C, Dynamic memory allocation, Data structures
 
 
 ## Other projects
