@@ -16,3 +16,4 @@ Hello! Here you can find the solutions created during my Greenfox Academy traini
 * [Binary Search](https://github.com/zbory/other-projects/tree/master/BinarySearch) - Binary search implemented with vector
 * [TicTacToe Game](https://github.com/zbory/other-projects/tree/master/TicTacToe) - A simple TicTacToe game created with SDL2
 * [Water Ripple](https://github.com/zbory/other-projects/tree/master/RainbowRipple) - A simple water ripple simulation
+* [Game of Life](https://github.com/zbory/other-projects/tree/master/GameOfLife) - An implementation of Conway's Game of Life
