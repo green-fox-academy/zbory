@@ -1,4 +1,4 @@
-# Balázs Zboray 
+# Balázs Zboray ![ProjectEuler](https://projecteuler.net/profile/zbory.png)
 
 Hello! Here you can find the solutions created during my Greenfox Academy training. Also you can find some of my own projects below.
 
