@@ -38,7 +38,7 @@ int push_back(vector_t *vector, int value)
     return 1;
 }
 
-int insert_after(vector_t *vector, int value, int index)
+int insert_after_index(vector_t *vector, int value, int index)
 {
     if (index > vector->size - 1) {
         printf("Index is out of bounds!\n");
@@ -135,13 +135,14 @@ int shuffle(vector_t *vector)
     return 1;
 }
 
-int unique(vector_t *vector){
+int unique(vector_t *vector)
+{
     vector_t *temp_elements;
     create_vector(&temp_elements);
     int *result = (int *) malloc(sizeof(int) * vector->capacity);
 
     int counter = 0;
-    for(int i = 0; i < vector->size; i++){
+    for (int i = 0; i < vector->size; i++) {
         if (search(temp_elements, vector->elements[i]) < 0) {
             result[counter] = vector->elements[i];
             push_back(temp_elements, vector->elements[i]);
@@ -155,7 +156,8 @@ int unique(vector_t *vector){
     resize_vector(vector);
 }
 
-int resize_vector(vector_t *vector){
+int resize_vector(vector_t *vector)
+{
     if (vector->size < vector->capacity / 4) {
         int *new_capacity = (int *) realloc(vector->elements, sizeof(int) * vector->capacity / 2);
         if (new_capacity == NULL)
@@ -166,8 +168,10 @@ int resize_vector(vector_t *vector){
     return 1;
 }
 
-int transform(vector_t *vector, int (*transform)(int)){
+int transform(vector_t *vector, int (*transform)(int))
+{
     for (int i = 0; i < vector->size; ++i) {
         vector->elements[i] = transform(vector->elements[i]);
     }
+    return 1;
 }

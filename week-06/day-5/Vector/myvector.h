@@ -15,7 +15,7 @@ int create_vector(vector_t **vector);
 
 int push_back(vector_t *vector, int value);
 
-int insert_after(vector_t *vector, int value, int index);
+int insert_after_index(vector_t *vector, int value, int index);
 
 int get_size(vector_t *vector);
 

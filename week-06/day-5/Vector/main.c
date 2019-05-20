@@ -29,11 +29,11 @@ int main()
 
     //Insert items
     printf("Inserting items!\n");
-    insert_after(vector, 7, 2);
-    insert_after(vector, 8, 2);
-    insert_after(vector, 9, 2);
+    insert_after_index(vector, 7, 2);
+    insert_after_index(vector, 8, 2);
+    insert_after_index(vector, 9, 2);
     print_vector(vector);
-    insert_after(vector, 10, 2);
+    insert_after_index(vector, 10, 2);
 
     print_vector(vector);
 
