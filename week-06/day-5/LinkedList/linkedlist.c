@@ -56,6 +56,27 @@ int insert_after(linked_list_t *head, int data, linked_list_t *after_this)
     return 1;
 }
 
+int insert_before(linked_list_t *head, int data, linked_list_t *before_this)
+{
+    linked_list_t *new_item = (linked_list_t *) malloc(sizeof(linked_list_t));
+
+    if (new_item == NULL)
+        return 0;
+
+    new_item->data = data;
+
+    linked_list_t *it = head;
+    while (it->next != NULL) {
+        if (it->next == before_this) {
+            new_item->next = it->next;
+            it->next = new_item;
+            break;
+        }
+        it = it->next;
+    }
+    return 1;
+}
+
 int get_ite_count(linked_list_t *head)
 {
     int count = 0;
@@ -93,4 +114,26 @@ int delete_by_value(linked_list_t *head, int value)
         it = it->next;
     }
     return deleted_items;
+}
+
+linked_list_t *search_value(linked_list_t *head, int value)
+{
+    linked_list_t *result = NULL;
+
+    linked_list_t *it = head;
+    while (it->next != NULL) {
+        if (it->data == value)
+            result = it;
+        it = it->next;
+    }
+
+    return result;
+}
+
+linked_list_t *insertion_sort(linked_list_t *head)
+{
+    linked_list_t *result;
+    create_list(&result);
+    //TODO: implement
+
 }
