@@ -21,10 +21,10 @@ void init_pins()
 	GPIOF->OSPEEDR |= (GPIO_OSPEEDER_OSPEEDR9);
 	GPIOF->OSPEEDR |= (GPIO_OSPEEDER_OSPEEDR10);
 
-	GPIOA->PUPDR &= ~(GPIO_PUPDR_PUPDR7); /* ensure all pull up pull down resistors are disabled */
-	GPIOA->PUPDR &= ~(GPIO_PUPDR_PUPDR8);
-	GPIOA->PUPDR &= ~(GPIO_PUPDR_PUPDR9);
-	GPIOA->PUPDR &= ~(GPIO_PUPDR_PUPDR10);
+	GPIOF->PUPDR &= ~(GPIO_PUPDR_PUPDR7); /* ensure all pull up pull down resistors are disabled */
+	GPIOF->PUPDR &= ~(GPIO_PUPDR_PUPDR8);
+	GPIOF->PUPDR &= ~(GPIO_PUPDR_PUPDR9);
+	GPIOF->PUPDR &= ~(GPIO_PUPDR_PUPDR10);
 
 }
 
