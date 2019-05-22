@@ -37,19 +37,19 @@ int main(void)
 
 		int a = 0;
 
-		GPIOF->BSRR |= (GPIO_BSRR_BS_7);
-		GPIOF->BSRR |= (GPIO_BSRR_BS_8);
-		GPIOF->BSRR |= (GPIO_BSRR_BS_9);
-		GPIOF->BSRR |= (GPIO_BSRR_BS_10);
+		GPIOF->BSRR = GPIO_BSRR_BS_7;
+		GPIOF->BSRR = GPIO_BSRR_BS_8;
+		GPIOF->BSRR = GPIO_BSRR_BS_9;
+		GPIOF->BSRR = GPIO_BSRR_BS_10;
 
 		for (int i = 0; i < 200000; i++) {
 			a = i;
 		}
 
-		GPIOF->BSRR |= (GPIO_BSRR_BR_7);
-		GPIOF->BSRR |= (GPIO_BSRR_BR_8);
-		GPIOF->BSRR |= (GPIO_BSRR_BR_9);
-		GPIOF->BSRR |= (GPIO_BSRR_BR_10);
+		GPIOF->BSRR = GPIO_BSRR_BR_7;
+		GPIOF->BSRR = GPIO_BSRR_BR_8;
+		GPIOF->BSRR = GPIO_BSRR_BR_9;
+		GPIOF->BSRR = GPIO_BSRR_BR_10;
 
 		for (int i = 0; i < 200000; i++) {
 			a = i;
