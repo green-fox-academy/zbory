@@ -6,10 +6,8 @@ GPIO_InitTypeDef railroad_leds;
 
 void init_pins()
 {
-	__HAL_RCC_GPIOF_CLK_ENABLE()
-	;
-	__HAL_RCC_GPIOB_CLK_ENABLE()
-	;; /* GPIOI clock enable */
+	__HAL_RCC_GPIOF_CLK_ENABLE(); /* GPIOI clock enable */
+	__HAL_RCC_GPIOB_CLK_ENABLE(); 
 
 	// Init user led (A 1-4)
 	railroad_leds.Pin = (GPIO_PIN_7 | GPIO_PIN_8 | GPIO_PIN_9 | GPIO_PIN_10);
