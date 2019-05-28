@@ -2,8 +2,6 @@
 #include "stm32746g_discovery.h"
 #include "systemclock_init.h"
 
-GPIO_InitTypeDef gpio_config;
-
 GPIO_InitTypeDef gpiopwm_config;
 /* the timer's config structure */
 TIM_HandleTypeDef timer2_handle;
@@ -14,20 +12,6 @@ TIM_OC_InitTypeDef pwm_config;
 
 void init_button(){
 
-}
-
-void GPIO_init()
-{
-	__HAL_RCC_GPIOF_CLK_ENABLE()
-	; /* GPIOI clock enable */
-
-	// Init user led (A 1-4)
-	gpio_config.Pin = GPIO_PIN_7 | GPIO_PIN_9;
-	gpio_config.Mode = GPIO_MODE_OUTPUT_PP;
-	gpio_config.Pull = GPIO_NOPULL;
-	gpio_config.Speed = GPIO_SPEED_FAST;
-
-	HAL_GPIO_Init(GPIOF, &gpio_config);
 }
 
 void PWM_Pin_init()
@@ -101,7 +85,6 @@ int main(void)
 
 	/* this function call sets the timers input clock to 108 Mhz (=108000000 Hz) */
 	SystemClock_Config();
-	GPIO_init();
 	init_timer2();
 	init_PWM();
 	init_timer3();
