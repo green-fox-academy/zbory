@@ -85,6 +85,8 @@ int main()
     transform(vector, cube_number);
     print_vector(vector);
 
+    delete_vector(vector);
+
     return 0;
 }
 

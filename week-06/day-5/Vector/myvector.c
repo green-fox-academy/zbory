@@ -22,6 +22,11 @@ int create_vector(vector_t **vector)
     return 1;
 }
 
+void delete_vector(vector_t *vector){
+    free(vector->elements);
+    free(vector);
+}
+
 int push_back(vector_t *vector, int value)
 {
     if (vector->size + 1 == vector->capacity) {
@@ -130,7 +135,7 @@ int shuffle(vector_t *vector)
         }
     }
     free(vector->elements);
-    free(indexes_temp);
+    delete_vector(indexes_temp);
     vector->elements = result;
     return 1;
 }
@@ -151,7 +156,7 @@ int unique(vector_t *vector)
     }
     vector->size = counter;
     free(vector->elements);
-    free(temp_elements);
+    delete_vector(temp_elements);
     vector->elements = result;
     resize_vector(vector);
 }
