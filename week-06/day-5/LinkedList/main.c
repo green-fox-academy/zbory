@@ -21,7 +21,7 @@ int main()
 
     //Item count and list
     printf("The list is %s!\n", is_empty(head) ? "empty" : "not empty");
-    printf("Item count: %d\n", get_ite_count(head));
+    printf("Item count: %d\n", get_item_count(head));
     printf("Items:\n");
     print_list(head);
 
@@ -44,6 +44,13 @@ int main()
     printf("\nInserting %d before item %d!\n", insert2, search2);
     insert_before(head, insert2, search_value(head, search));
     print_list(head);
+
+    //Deleting linked list
+    printf("\nDeleting list!\n");
+    printf("Item count: %d\n", get_item_count(head));
+    int i = delete_linked_list(head);
+    printf("%d nodes got deleted, including the head", i);
+
 
     return 0;
 }

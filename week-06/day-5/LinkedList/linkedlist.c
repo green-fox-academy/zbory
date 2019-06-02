@@ -77,7 +77,7 @@ int insert_before(linked_list_t *head, int data, linked_list_t *before_this)
     return 1;
 }
 
-int get_ite_count(linked_list_t *head)
+int get_item_count(linked_list_t *head)
 {
     int count = 0;
     linked_list_t *it = head;
@@ -128,6 +128,25 @@ linked_list_t *search_value(linked_list_t *head, int value)
     }
 
     return result;
+}
+
+int delete_linked_list(linked_list_t *head)
+{
+    linked_list_t *current = head;
+    linked_list_t *temp_next;
+    int deleted_node_count = 0;
+
+    do{
+        temp_next = current->next;
+        if(current != NULL) {
+            free(current);
+            deleted_node_count++;
+        }
+        current = temp_next;
+    }
+    while(temp_next != NULL);
+
+    return deleted_node_count;
 }
 
 linked_list_t *insertion_sort(linked_list_t *head)
