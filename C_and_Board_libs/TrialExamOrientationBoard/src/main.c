@@ -3,6 +3,7 @@
 #include "systemclock_init.h"
 #include "timer.h"
 #include "gpio_pin.h"
+#include "uart.h"
 
 typedef enum state {
 	OPEN, SECURING, SECURED, OPENING
@@ -17,12 +18,13 @@ int main(void)
 {
 	HAL_Init();
 	SystemClock_Config();
+	init_usart1();
 	BSP_LED_Init(LED_GREEN);
 
 	init_timer2(TIMER_IT); // Init timer2 for flashing green LED
-	init_timer3(TIMER_IT); // Init timer3 for waiting 5,6 seconds
+	init_timer3(TIMER_IT); // Init timer3 for waiting 5 and 6 seconds
 	user_button_init(GPIO_INPUT_IT); // Init user button
-	A5_GPIO_output_init(); // Init A5 pin as output for debugging
+	//A5_GPIO_output_init(); // Init A5 pin as output for debugging
 
 	BSP_LED_On(LED_GREEN);
 	HAL_TIM_Base_Start_IT(&timer2_handle); // Starting timer2 for flashing green LED
@@ -71,12 +73,14 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 		previous_button_push = HAL_GetTick();
 		// Changing states according to user button presses
 		if (state == OPEN) {
-			HAL_GPIO_TogglePin(GPIOF, GPIO_PIN_6);
+			HAL_UART_Transmit(&usart1_handle, "Entered SECURING state\r\n", 24, 0xFFFF);
+//			HAL_GPIO_TogglePin(GPIOF, GPIO_PIN_6);
 			state = SECURING;
 		}
 
 		if (state == SECURED) {
-			HAL_GPIO_TogglePin(GPIOF, GPIO_PIN_6);
+			HAL_UART_Transmit(&usart1_handle, "Entered OPENING state\r\n", 23, 0xFFFF);
+//			HAL_GPIO_TogglePin(GPIOF, GPIO_PIN_6);
 			state = OPENING;
 		}
 	}
@@ -104,16 +108,16 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 			led_state = 1;
 		}
 	}
-
-	// Stopping and resetting the timer after SECURING and OPENING states
+	// Changing states after wait is over
 	if (htim->Instance == TIM3) {
-		// Changing states after wait is over
 		if (state == SECURING) {
-			HAL_GPIO_TogglePin(GPIOF, GPIO_PIN_6);
+			HAL_UART_Transmit(&usart1_handle, "Entered SECURED state\r\n", 23, 0xFFFF);
+//			HAL_GPIO_TogglePin(GPIOF, GPIO_PIN_6);
 			state = SECURED; // Stepping into SECURED state
 		}
 		if (state == OPENING) {
-			HAL_GPIO_TogglePin(GPIOF, GPIO_PIN_6);
+			HAL_UART_Transmit(&usart1_handle, "Entered OPEN state\r\n", 20, 0xFFFF);
+//			HAL_GPIO_TogglePin(GPIOF, GPIO_PIN_6);
 			state = OPEN; // Stepping into OPEN state
 		}
 	}
