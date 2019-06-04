@@ -63,5 +63,21 @@ void D9_GPIO_pwm_output_init()
 	HAL_GPIO_Init(GPIOA, &D9_GPIO_pwm_output_handle);
 }
 
+/*********************** A0 Analogue Output Init ***********************/
+
+void A0_GPIO_analogue_input_init(){
+	{
+		/* configuring A0 pin as analog input */
+		__HAL_RCC_GPIOA_CLK_ENABLE()
+		;
+		/* there is no need for setting the Alternate datafield like other peripherals*/
+		A0_GPIO_analogue_input_handle.Mode = GPIO_MODE_ANALOG;
+		A0_GPIO_analogue_input_handle.Pin = GPIO_PIN_0;
+		A0_GPIO_analogue_input_handle.Speed = GPIO_SPEED_FAST;
+		A0_GPIO_analogue_input_handle.Pull = GPIO_NOPULL;
+
+		HAL_GPIO_Init(GPIOA, &A0_GPIO_analogue_input_handle);
+	}
+}
 
 
