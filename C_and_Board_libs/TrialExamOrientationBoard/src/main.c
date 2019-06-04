@@ -12,6 +12,7 @@ typedef enum state {
 uint8_t led_state = 1;
 State state = OPEN;
 
+//For SMT Studio debug
 uint32_t timer2_cnt;
 uint32_t timer2_arr;
 uint32_t timer3_cnt;
