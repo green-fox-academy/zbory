@@ -10,8 +10,10 @@ typedef enum gpio_mode{
 
 GPIO_InitTypeDef user_button_handle;
 GPIO_InitTypeDef A5_GPIO_output_handle;
+GPIO_InitTypeDef D9_GPIO_pwm_output_handle;
 
 void user_button_init(GPIOMode mode);
 void A5_GPIO_output_init();
+void D9_GPIO_pwm_output_init();
 
 #endif /* TEMPLATE_GPIO_PIN_H */

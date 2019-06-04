@@ -47,5 +47,21 @@ void A5_GPIO_output_init()
 	HAL_GPIO_Init(GPIOF, &A5_GPIO_output_handle);
 }
 
+/*********************** D9 PWM Output Init ***********************/
+
+void D9_GPIO_pwm_output_init()
+{
+	__HAL_RCC_GPIOA_CLK_ENABLE()
+	;
+
+	D9_GPIO_pwm_output_handle.Pin = GPIO_PIN_15;
+	D9_GPIO_pwm_output_handle.Mode = GPIO_MODE_AF_PP;
+	D9_GPIO_pwm_output_handle.Pull = GPIO_NOPULL;
+	D9_GPIO_pwm_output_handle.Speed = GPIO_SPEED_FAST;
+	D9_GPIO_pwm_output_handle.Alternate = GPIO_AF1_TIM2;
+
+	HAL_GPIO_Init(GPIOA, &D9_GPIO_pwm_output_handle);
+}
+
 
 
