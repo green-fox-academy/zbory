@@ -12,6 +12,10 @@ typedef enum settings_mode {
 Mode mode = BRIGHTNESS;
 uint8_t led_state = 1;
 
+uint32_t timer_arr;
+uint32_t timer_cnt;
+int adc_val;
+
 int main(void)
 {
 	HAL_Init();
@@ -26,11 +30,10 @@ int main(void)
 	HAL_TIM_Base_Start_IT(&timer3_handle);
 	user_button_init(GPIO_INPUT_IT);
 
-	int adc_val;
 
 	while (1) {
 
-		HAL_Delay(250);
+		HAL_Delay(50);
 		HAL_ADC_Start(&adc3_handle);
 		if (HAL_ADC_PollForConversion(&adc3_handle, 10) == HAL_OK) {
 			adc_val = HAL_ADC_GetValue(&adc3_handle);
@@ -39,7 +42,11 @@ int main(void)
 						(adc_val / 4095.0f) * 100.0f);
 			}
 			else {
-				__HAL_TIM_SET_AUTORELOAD(&timer3_handle, 100 * (1 + adc_val / 4095.0f * 19.0f));
+				timer_cnt = __HAL_TIM_GET_COUNTER(&timer3_handle);
+				timer_arr = __HAL_TIM_GET_COUNTER(&timer3_handle) > 100 * (1 + adc_val / 4095.0f * 19.0f) ?
+						__HAL_TIM_GET_COUNTER(&timer3_handle) :
+						100 * (1 + adc_val / 4095.0f * 19.0f);
+				__HAL_TIM_SET_AUTORELOAD(&timer3_handle, timer_arr);
 			}
 		}
 	}
