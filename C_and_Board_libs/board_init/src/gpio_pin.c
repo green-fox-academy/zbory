@@ -80,4 +80,27 @@ void A0_GPIO_analogue_input_init(){
 	}
 }
 
+/*********************** A1 Input Init ***********************/
 
+void A1_GPIO_input(GPIOMode mode)
+{
+	__HAL_RCC_GPIOF_CLK_ENABLE()
+	;
+
+	A1_GPIO_input_handle.Pin = GPIO_PIN_10;
+	A1_GPIO_input_handle.Pull = GPIO_NOPULL;
+	A1_GPIO_input_handle.Speed = GPIO_SPEED_FAST;
+	if (mode == GPIO_INPUT_IT) {
+		A1_GPIO_input_handle.Mode = GPIO_MODE_IT_RISING;
+	} else {
+		A1_GPIO_input_handle.Mode = GPIO_MODE_INPUT;
+	}
+	HAL_GPIO_Init(GPIOF, &A1_GPIO_input_handle);
+
+	if (mode == GPIO_INPUT_IT) {
+		/* assign a priority to our interrupt line */
+		HAL_NVIC_SetPriority(EXTI15_10_IRQn, 1, 0);
+		/* tell the interrupt handling unit to process our interrupts */
+		HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
+	}
+}
