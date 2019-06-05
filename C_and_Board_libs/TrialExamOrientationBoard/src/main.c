@@ -41,6 +41,7 @@ int main(void)
 			__HAL_TIM_SET_AUTORELOAD(&timer2_handle, 10000); // Setting timer2 for 0.5 Hz flashing
 		}
 		if (state == SECURING) {
+			__HAL_TIM_SET_AUTORELOAD(&timer2_handle, 5000); // Setting timer2 for 1 Hz flashing
 			HAL_NVIC_DisableIRQ(EXTI15_10_IRQn); // Disable button interrupt
 
 		}
@@ -50,7 +51,7 @@ int main(void)
 		}
 		if (state == OPENING) {
 			HAL_NVIC_DisableIRQ(EXTI15_10_IRQn); // Disable button interrupt
-			HAL_NVIC_EnableIRQ(TIM2_IRQn); // Re-Enable LED flashing
+//			HAL_NVIC_EnableIRQ(TIM2_IRQn); // Re-Enable LED flashing
 
 		}
 	}
@@ -63,17 +64,17 @@ void EXTI15_10_IRQHandler()
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
-
 	// Changing states according to user button presses
 	if (state == OPEN) {
-		__HAL_TIM_SET_AUTORELOAD(&timer2_handle, 5000); // Setting timer2 for 1 Hz flashing
-		__HAL_TIM_SET_COUNTER(&timer2_handle, 1); // Resetting timer2 COUNTER in case it stopped above 5000
+//		__HAL_TIM_SET_AUTORELOAD(&timer2_handle, 5000); // Setting timer2 for 1 Hz flashing
+
 
 		HAL_UART_Transmit(&usart1_handle, "Entered SECURING state\r\n", 24,
 				0xFFFF);
 
 		__HAL_TIM_SET_AUTORELOAD(&timer3_handle, 10000); // Setting timer3 for 5 seconds wait
 		HAL_TIM_Base_Start_IT(&timer3_handle); // Starting timer3
+		__HAL_TIM_SET_COUNTER(&timer2_handle, 1); // Resetting timer2 COUNTER in case it stopped above 5000
 		state = SECURING;
 		return;
 	}
@@ -119,8 +120,8 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 
 	// Changing states after wait is over
 	if (htim->Instance == TIM3) {
-		__HAL_TIM_SET_COUNTER(&timer3_handle, 1);
 		HAL_TIM_Base_Stop_IT(&timer3_handle); // Stopping timer3
+		__HAL_TIM_SET_COUNTER(&timer3_handle, 1); // Resetting timer3
 
 		if (state == SECURING) {
 			HAL_UART_Transmit(&usart1_handle, "Entered SECURED state\r\n", 23,
