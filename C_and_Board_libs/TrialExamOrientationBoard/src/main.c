@@ -37,6 +37,7 @@ int main(void)
 		timer2_arr = __HAL_TIM_GET_AUTORELOAD(&timer2_handle);
 
 		if (state == OPEN) {
+			HAL_NVIC_ClearPendingIRQ(EXTI15_10_IRQn);
 			HAL_NVIC_EnableIRQ(EXTI15_10_IRQn); // Re-Enable button interrupt
 			__HAL_TIM_SET_AUTORELOAD(&timer2_handle, 10000); // Setting timer2 for 0.5 Hz flashing
 		}
@@ -46,12 +47,12 @@ int main(void)
 
 		}
 		if (state == SECURED) {
+			HAL_NVIC_ClearPendingIRQ(EXTI15_10_IRQn);
 			HAL_NVIC_EnableIRQ(EXTI15_10_IRQn); // Re-Enable button interrupt
 			BSP_LED_Off(LED_GREEN); // Making sure LED is off
 		}
 		if (state == OPENING) {
 			HAL_NVIC_DisableIRQ(EXTI15_10_IRQn); // Disable button interrupt
-//			HAL_NVIC_EnableIRQ(TIM2_IRQn); // Re-Enable LED flashing
 
 		}
 	}
@@ -66,15 +67,12 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
 	// Changing states according to user button presses
 	if (state == OPEN) {
-//		__HAL_TIM_SET_AUTORELOAD(&timer2_handle, 5000); // Setting timer2 for 1 Hz flashing
-
-
 		HAL_UART_Transmit(&usart1_handle, "Entered SECURING state\r\n", 24,
 				0xFFFF);
 
 		__HAL_TIM_SET_AUTORELOAD(&timer3_handle, 10000); // Setting timer3 for 5 seconds wait
 		HAL_TIM_Base_Start_IT(&timer3_handle); // Starting timer3
-		__HAL_TIM_SET_COUNTER(&timer2_handle, 1); // Resetting timer2 COUNTER in case it stopped above 5000
+		__HAL_TIM_SET_COUNTER(&timer2_handle, 1); // Resetting timer2 COUNTER so it's nit stuck above 5000
 		state = SECURING;
 		return;
 	}
@@ -85,7 +83,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 		__HAL_TIM_SET_AUTORELOAD(&timer3_handle, 12000); // Setting timer3 for 6 seconds wait
 		HAL_TIM_Base_Start_IT(&timer3_handle); // Starting timer3
 
-		HAL_TIM_Base_Start_IT(&timer2_handle); // Starting timer2
+		HAL_TIM_Base_Start_IT(&timer2_handle); // Starting timer2 to restart blinking
 		state = OPENING;
 		return;
 	}
@@ -129,7 +127,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 			state = SECURED; // Stepping into SECURED state
 
 			__HAL_TIM_SET_COUNTER(&timer2_handle, 1);
-			HAL_TIM_Base_Stop_IT(&timer2_handle); // Stopping timer2
+			HAL_TIM_Base_Stop_IT(&timer2_handle); // Stopping timer2 to stop blinking
 		}
 		if (state == OPENING) {
 			HAL_UART_Transmit(&usart1_handle, "Entered OPEN state\r\n", 20,
