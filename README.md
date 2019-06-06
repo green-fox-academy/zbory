@@ -8,7 +8,9 @@ Hello! Here you can find the solutions created during my Greenfox Academy traini
 * [WEEK 2](https://github.com/green-fox-academy/zbory/tree/master/week-02) - Pointers, Data structures, and Drawing
 * [WEEK 3](https://github.com/green-fox-academy/zbory/tree/master/week-03) - File IO and Classes
 * [WEEK 4](https://github.com/green-fox-academy/zbory/tree/master/week-04) - Object Orientation and Testing
-* [WEEK 6](https://github.com/green-fox-academy/zbory/tree/master/week-04) - Basics of C, Dynamic memory allocation, Data structures
+* [WEEK 6](https://github.com/green-fox-academy/zbory/tree/master/week-06) - Basics of C, Dynamic memory allocation, Data structures
+* [WEEK 7](https://github.com/green-fox-academy/zbory/tree/master/week-07) - Introduction to STM32, Electronics, GPIO, Interrupts
+* [WEEK 8](https://github.com/green-fox-academy/zbory/tree/master/week-08) - Timers, PWM, Serial communications (UART, I2C)
 
 
 ## Other projects
