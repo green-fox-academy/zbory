@@ -11,6 +11,7 @@ Hello! Here you can find the solutions created during my Greenfox Academy traini
 * [WEEK 6](https://github.com/green-fox-academy/zbory/tree/master/week-06) - Basics of C, Dynamic memory allocation, Data structures
 * [WEEK 7](https://github.com/green-fox-academy/zbory/tree/master/week-07) - Introduction to STM32, Electronics, GPIO, Interrupts
 * [WEEK 8](https://github.com/green-fox-academy/zbory/tree/master/week-08) - Timers, PWM, Serial communications (UART, I2C)
+* [WEEK 9](https://github.com/green-fox-academy/zbory/tree/master/week-09) - ADC, preparing for the Orientation Exam
 
 
 ## Other projects
